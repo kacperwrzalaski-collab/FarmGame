@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Duolingo 1-3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+    <div class="container">
+        
+        <!-- MENU GŁÓWNE -->
+        <div id="menu-view" class="view active">
+            <div class="menu-header">
+                <div class="profile-preview" onclick="changeView('profile-view')">
+                    <img id="nav-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ccc' viewBox='0 0 24 24'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Avatar">
+                    <span id="nav-username" style="font-weight:bold;">Uczeń</span>
+                </div>
+                <div class="streak-badge">🔥 <span id="streak-count">0</span></div>
+            </div>
+            <div class="success-hero">
+                <h1 style="font-size:32px; color:var(--accent-color);">English 1-3</h1>
+                <p style="opacity: 0.8;">Słownictwo, liczby i zdania z Duolingo!</p>
+                <button class="btn" onclick="startLesson()">Zacznij lekcję</button>
+            </div>
+        </div>
+
+        <!-- USTAWIENIA I PROFIL -->
+        <div id="profile-view" class="view">
+            <div class="page-header">
+                <button class="back-btn" onclick="saveProfile(); changeView('menu-view')">⬅️</button>
+                <h2>Twój Profil i Motyw</h2>
+            </div>
+            
+            <img id="settings-avatar" class="big-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ccc' viewBox='0 0 24 24'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Avatar">
+            
+            <div class="input-group">
+                <label>Twoje imię:</label>
+                <input type="text" id="username-input" placeholder="Wpisz imię..." value="Uczeń">
+                
+                <div class="file-upload btn btn-secondary">
+                    <span>Wgraj nowe zdjęcie 📸</span>
+                    <input type="file" accept="image/*" onchange="handleImageUpload(event)">
+                </div>
+            </div>
+
+            <p style="margin-top: 10px; margin-bottom: 5px; font-weight: bold;">Motyw aplikacji:</p>
+            <div class="theme-options">
+                <button class="theme-btn active-theme" onclick="setTheme('dark', this)">🌙 Ciemny</button>
+                <button class="theme-btn" onclick="setTheme('light', this)">☀️ Jasny</button>
+                <button class="theme-btn" onclick="setTheme('pink', this)">🌸 Różowy</button>
+                <button class="theme-btn" onclick="setTheme('green', this)">🌲 Zielony</button>
+            </div>
+        </div>
+
+        <!-- EKRAN LEKCJI -->
+        <div id="game-view" class="view">
+            <div class="game-header">
+                <button class="back-btn" onclick="quitLesson()">✕</button>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="hearts">❤️ <span id="lives-count">3</span></div>
+            </div>
+
+            <div class="question-box" id="question-container">
+                <!-- Pytania wstrzykiwane przez JS -->
+            </div>
+
+            <div class="footer-action">
+                <div id="feedback-msg" class="feedback"></div>
+                <button id="action-btn" class="btn" onclick="handleAction()">Sprawdź</button>
+            </div>
+        </div>
+
+        <!-- EKRAN SUKCESU Z ANIMACJĄ -->
+        <div id="success-view" class="view">
+            <div class="success-hero">
+                <h2>Lekcja ukończona!</h2>
+                
+                <div class="dancer-container">
+                    <div class="limb arm left"></div>
+                    <div class="limb arm right"></div>
+                    <img id="dancer-avatar" class="dancer-img" src="" alt="Avatar">
+                    <div class="limb leg left"></div>
+                    <div class="limb leg right"></div>
+                </div>
+
+                <h3 id="success-message" style="color: var(--accent-color); margin-top: 20px;">Świetna robota!</h3>
+                <div class="streak-badge" style="justify-content: center;">🔥 Passa: <span id="end-streak"></span></div>
+                
+                <button class="btn" style="margin-top: 30px;" onclick="changeView('menu-view')">Wróć do menu</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
